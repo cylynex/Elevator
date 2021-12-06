@@ -11,6 +11,7 @@ namespace Elevator.Core {
             ec = FindObjectOfType<ElevatorController>();
         }
 
+        // Debug only
         private void OnMouseDown() {
             print("Queue Size: "+ec.GetQueueSize());
         }

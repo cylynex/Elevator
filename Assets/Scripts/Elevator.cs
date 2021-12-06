@@ -6,14 +6,13 @@ namespace Elevator.Core {
 
     public class Elevator : MonoBehaviour {
 
-        [SerializeField] bool isBusy = false;
-        public bool IsBusy { get { return isBusy; } }
         [SerializeField] float moveSpeed = 0.5f;
 
+        bool isBusy = false;
+        public bool IsBusy { get { return isBusy; } }
         Vector3 startingPosition;
         Vector3 destination;
         float fraction;
-
         ElevatorController ec;
 
         private void Start() {
@@ -50,7 +49,5 @@ namespace Elevator.Core {
                 }
             }
         }
-
     }
-
 }

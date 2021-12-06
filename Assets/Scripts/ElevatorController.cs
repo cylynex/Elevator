@@ -12,16 +12,11 @@ namespace Elevator.Core {
 
         public void CallElevator(Vector3 floorPosition) {
 
-            print("ELEMENTS IN QUEUE: " + callQueue.Count);
-
-            print("Calling Elevator");
-
             distanceToElevator = Mathf.Infinity;
             chosenElevator = null;
 
-            print("Pressed Call Button");
+            // Get closest elevator that is free
             foreach (GameObject elevator in elevators) {
-
                 float elevatorYPos = elevator.transform.position.y;
                 Vector3 elPos = new Vector3(transform.position.x, elevatorYPos, transform.position.z);
 
@@ -35,11 +30,9 @@ namespace Elevator.Core {
             }
 
             if (chosenElevator != null) {
-                print("Selected an elevator: " + chosenElevator.name);
                 chosenElevator.GetComponent<Elevator>().AcceptCall(floorPosition);
             } else {
-                // Couldn't find a free elevator, so queue it to recheck later (by elevators freeing up maybe)
-                print("No available elevators currently - added to queue");
+                // Couldn't find a free elevator, so queue it
                 callQueue.Enqueue(floorPosition);
             }
         }
@@ -50,7 +43,6 @@ namespace Elevator.Core {
 
         public Vector3 GetQueueItem() {
             if (callQueue.Count > 0) {
-                print("found jobs waiting.");
                 return callQueue.Dequeue();
             }
             return callQueue.Dequeue();
